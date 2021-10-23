@@ -14,6 +14,6 @@ class DataReader extends DataDownloader with DataDecoder with DataDeserializer {
 object FacadeExample {
   def main(args: Array[String]): Unit = {
     val reader = new DataReader
-    System.out.println(s"We just read the following person: ${reader.readPerson("https://www.ivan-nikolov.com/")}")
+    System.out.println(s"""We just read the following person: ${reader.readPerson("https://www.ivan-nikolov.com/")}""")
   }
 }
