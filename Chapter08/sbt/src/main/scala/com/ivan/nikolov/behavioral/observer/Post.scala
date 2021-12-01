@@ -6,7 +6,7 @@ import scala.collection.mutable.ListBuffer
 
 case class Post(user: User, text: String) extends Observable[Post] {
   
-  val comments = ListBuffer[Comment]()
+  val comments: ListBuffer[Comment] = ListBuffer[Comment]()
   
   def addComment(comment: Comment): Unit = {
     comments.+=:(comment)
