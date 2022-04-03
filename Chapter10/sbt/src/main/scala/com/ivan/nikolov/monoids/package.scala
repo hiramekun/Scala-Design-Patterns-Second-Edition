@@ -55,7 +55,7 @@ package object monoids {
       }
     
     def balancedFold[T, Y](list: IndexedSeq[T], m: Monoid[Y])(f: T => Y): Y =
-      if (list.length == 0) {
+      if (list.isEmpty) {
         m.zero
       } else if (list.length == 1) {
         f(list(0))

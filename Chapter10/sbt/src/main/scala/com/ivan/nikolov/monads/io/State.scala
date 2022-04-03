@@ -43,7 +43,7 @@ object IOAction {
 
   def apply[T](result: => T): IOAction[T] =
     new SimpleAction[T](result)
-  
+
   def unit[T](value: T): IOAction[T] =
     new EmptyAction[T](value)
 
@@ -51,22 +51,26 @@ object IOAction {
     override def apply(state: State): (State, T) =
       (state.next, result)
   }
-  
+
   private class EmptyAction[T](value: T) extends IOAction[T] {
-    override def apply(state: State): (State, T) = 
+    override def apply(state: State): (State, T) =
       (state, value)
   }
 }
 
 object FileIOExample extends FileIO {
-  
+
   def main(args: Array[String]): Unit = {
     run(args)
   }
-  
-  override def runIO(readPath: String, writePath: String): IOAction[_] =
+
+  override def runIO(readPath: String, writePath: String): IOAction[_] = {
+    //    readFile(readPath).flatMap { lines =>
+    //      writeFile(writePath, lines.map(_.toUpperCase))
+    //    }
     for {
       lines <- readFile(readPath)
       _ <- writeFile(writePath, lines.map(_.toUpperCase))
     } yield ()
+  }
 }

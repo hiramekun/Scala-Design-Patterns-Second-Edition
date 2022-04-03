@@ -5,10 +5,10 @@ import java.io.{PrintWriter, File}
 import scala.io.Source
 
 package object io {
-  def readFile(path: String) =
+  def readFile(path: String): IOAction[Iterator[String]] =
     IOAction(Source.fromFile(path).getLines())
 
-  def writeFile(path: String, lines: Iterator[String]) =
+  def writeFile(path: String, lines: Iterator[String]): IOAction[Unit] =
     IOAction({
       val file = new File(path)
       printToFile(file) { p => lines.foreach(p.println) }
