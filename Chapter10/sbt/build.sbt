@@ -12,6 +12,7 @@ publishMavenStyle := true
 
 libraryDependencies ++= {
   Seq(
+    "org.typelevel" %% "cats-core" % "2.3.0",
     "org.slf4j" % "slf4j-log4j12" % "1.7.25",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2",
     "org.scalatest" %% "scalatest" % "3.0.4" % "test",
