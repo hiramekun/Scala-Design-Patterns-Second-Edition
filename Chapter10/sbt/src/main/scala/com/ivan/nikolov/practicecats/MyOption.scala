@@ -1,6 +1,7 @@
 package com.ivan.nikolov.practicecats
 
 import cats.Monad
+import com.ivan.nikolov.monads.{Implementation, None, Option, Some}
 
 import scala.annotation.tailrec
 
@@ -45,5 +46,36 @@ object Main {
     }
     println(result)
   }
+}
 
+// Example
+case class Doer_cats() {
+  def getAlgorithm(isFail: Boolean): MyOption[Algorithm_cats] =
+    if (isFail) {
+      MyNone()
+    } else {
+      MySome(Algorithm_cats())
+    }
+}
+
+case class Algorithm_cats() {
+  def getImplementation(isFail: Boolean, left: Int, right: Int): MyOption[Implementation] =
+    if (isFail) {
+      MyNone()
+    } else {
+      MySome(Implementation(left, right))
+    }
+}
+
+object MonadExample {
+  def main(args: Array[String]): Unit = {
+    System.out.println(s"The result is: ${compute(MySome(Doer_cats()), 10, 16)}")
+  }
+
+  def compute(doer: MyOption[Doer_cats], left: Int, right: Int): MyOption[Int] =
+    for {
+      d <- doer
+      a <- d.getAlgorithm(false)
+      i <- a.getImplementation(false, left, right)
+    } yield i.compute
 }
