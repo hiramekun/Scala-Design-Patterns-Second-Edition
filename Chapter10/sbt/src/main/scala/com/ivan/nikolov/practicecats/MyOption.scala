@@ -1,7 +1,7 @@
 package com.ivan.nikolov.practicecats
 
 import cats.Monad
-import com.ivan.nikolov.monads.{Implementation, None, Option, Some}
+import com.ivan.nikolov.monads.Implementation
 
 import scala.annotation.tailrec
 
@@ -76,6 +76,6 @@ object MonadExample {
     for {
       d <- doer
       a <- d.getAlgorithm(false)
-      i <- a.getImplementation(false, left, right)
+      i <- a.getImplementation(isFail = false, left, right)
     } yield i.compute
 }
