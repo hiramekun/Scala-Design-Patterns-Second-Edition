@@ -5,13 +5,6 @@ import com.ivan.nikolov.monads.Implementation
 
 import scala.annotation.tailrec
 
-
-sealed class MyOption[A](implicit val optionMonad: Monad[MyOption]) {
-  def flatMap[B](f: A => MyOption[B]): MyOption[B] = optionMonad.flatMap(this)(f)
-
-  def map[B](f: A => B): MyOption[B] = optionMonad.map(this)(f)
-}
-
 object MyOption {
   implicit def optionMonad: Monad[MyOption] =
     new Monad[MyOption] {
@@ -29,6 +22,12 @@ object MyOption {
         case MyNone() => MyNone()
       }
     }
+}
+
+sealed class MyOption[A](implicit val optionMonad: Monad[MyOption]) {
+  def flatMap[B](f: A => MyOption[B]): MyOption[B] = optionMonad.flatMap(this)(f)
+
+  def map[B](f: A => B): MyOption[B] = optionMonad.map(this)(f)
 }
 
 case class MySome[A](value: A) extends MyOption[A]
