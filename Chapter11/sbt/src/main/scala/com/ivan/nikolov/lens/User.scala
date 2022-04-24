@@ -1,6 +1,6 @@
 package com.ivan.nikolov.lens
 
-import scalaz.Lens
+import scalaz.{Lens, LensFamily}
 
 case class Country(name: String, code: String)
 
@@ -13,39 +13,39 @@ case class Company(name: String, address: Address)
 case class User(name: String, company: Company, address: Address)
 
 object User {
-  val userCompany = Lens.lensu[User, Company](
+  val userCompany: Lens[User, Company] = Lens.lensu[User, Company](
     (u, company) => u.copy(company = company),
     _.company
   )
 
-  val userAddress = Lens.lensu[User, Address](
+  val userAddress: Lens[User, Address] = Lens.lensu[User, Address](
     (u, address) => u.copy(address = address),
     _.address
   )
 
-  val companyAddress = Lens.lensu[Company, Address](
+  val companyAddress: Lens[Company, Address] = Lens.lensu[Company, Address](
     (c, address) => c.copy(address = address),
     _.address
   )
 
-  val addressCity = Lens.lensu[Address, City](
+  val addressCity: Lens[Address, City] = Lens.lensu[Address, City](
     (a, city) => a.copy(city = city),
     _.city
   )
 
-  val cityCountry = Lens.lensu[City, Country](
+  val cityCountry: Lens[City, Country] = Lens.lensu[City, Country](
     (c, country) => c.copy(country = country),
     _.country
   )
 
-  val countryCode = Lens.lensu[Country, String](
+  val countryCode: Lens[Country, String] = Lens.lensu[Country, String](
     (c, code) => c.copy(code = code),
     _.code
   )
 
-  val userCompanyCountryCode = userCompany >=> companyAddress >=> addressCity >=> cityCountry >=> countryCode
+  val userCompanyCountryCode: LensFamily[User, User, String, String] = userCompany >=> companyAddress >=> addressCity >=> cityCountry >=> countryCode
 
-  val userCompanyCountryCodeCompose = countryCode <=< cityCountry <=< addressCity <=< companyAddress <=< userCompany
+  val userCompanyCountryCodeCompose: LensFamily[User, User, String, String] = countryCode <=< cityCountry <=< addressCity <=< companyAddress <=< userCompany
 }
 
 object UserVerboseExample {
