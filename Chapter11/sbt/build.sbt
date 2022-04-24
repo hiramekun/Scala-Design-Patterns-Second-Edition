@@ -18,7 +18,9 @@ libraryDependencies ++= {
     "org.scalaz" %% "scalaz-core" % "7.3.6",
     "com.h2database" % "h2" % "1.4.196",
     "org.scalactic" %% "scalactic" % "3.2.11",
+    "dev.optics" %% "monocle-core"  % "3.1.0",
+    "dev.optics" %% "monocle-macro" % "3.1.0",
     "org.scalatest" %% "scalatest" % "3.2.11" % "test",
-    "org.mockito" % "mockito-all" % "1.10.19" % "test" // mockito for tests
+    "org.mockito" %% "mockito-scala" % "1.16.0" % "test"
   )
 }

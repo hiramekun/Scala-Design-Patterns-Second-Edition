@@ -1,8 +1,8 @@
 package com.ivan.nikolov.cake
 
-import org.scalatest.mockito.MockitoSugar
+import org.mockito.MockitoSugar
 
-trait TestEnvironment 
+trait TestEnvironment
   extends UserComponent
   with DaoComponent
   with DatabaseComponent
