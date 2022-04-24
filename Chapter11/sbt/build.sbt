@@ -2,7 +2,7 @@ organization := "com.ivan.nikolov"
 
 name := "functional-design-patterns-sbt"
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.13.8"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
@@ -13,11 +13,12 @@ publishMavenStyle := true
 libraryDependencies ++= {
   Seq(
     "org.slf4j" % "slf4j-log4j12" % "1.7.25",
-    "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2",
+    "com.typesafe.scala-logging" %% "scala-logging" % "3.9.4",
     "commons-codec" % "commons-codec" % "1.11",
-    "org.scalaz" %% "scalaz-core" % "7.2.20",
+    "org.scalaz" %% "scalaz-core" % "7.3.6",
     "com.h2database" % "h2" % "1.4.196",
-    "org.scalatest" %% "scalatest" % "3.0.4" % "test",
+    "org.scalactic" %% "scalactic" % "3.2.11",
+    "org.scalatest" %% "scalatest" % "3.2.11" % "test",
     "org.mockito" % "mockito-all" % "1.10.19" % "test" // mockito for tests
   )
 }
