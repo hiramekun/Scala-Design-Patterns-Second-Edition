@@ -1,5 +1,7 @@
 package com.ivan.nikolov.duck
 
+import scala.language.reflectiveCalls
+
 object DuckTypingExample {
 
   def printSentenceParts(sentence: String, parser: {def parse(sentence: String): Array[String]}) =

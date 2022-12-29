@@ -1,7 +1,12 @@
 package com.ivan.nikolov.cake
 
+import scalaz.Reader
+
 trait UserComponent {
   this: DaoComponent =>
+
+  def getAverageAgeOfUsersInClass(className: String): Reader[UserService, Double] =
+    Reader((userService: UserService) => userService.getAverageAgeOfUsersInClass(className))
   
   val userService: UserService
   class UserService {

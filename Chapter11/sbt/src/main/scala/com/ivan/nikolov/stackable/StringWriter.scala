@@ -6,24 +6,29 @@ abstract class StringWriter {
 }
 
 class BasicStringWriter extends StringWriter {
-  override def write(data: String): String =
+  override def write(data: String): String = {
+    println("Basic")
     s"Writing the following data: ${data}"
+  }
 }
 
 trait CapitalizingStringWriter extends StringWriter {
   abstract override def write(data: String): String = {
+    println("Capitalizing")
     super.write(data.split("\\s+").map(_.capitalize).mkString(" "))
   }
 }
 
 trait UppercasingStringWriter extends StringWriter {
   abstract override def write(data: String): String = {
+    println("Uppsercasing")
     super.write(data.toUpperCase)
   }
 }
 
 trait LowercasingStringWriter extends StringWriter {
   abstract override def write(data: String): String = {
+    println("Lowercasing")
     super.write(data.toLowerCase)
   }
 }
